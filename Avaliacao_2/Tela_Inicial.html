@@ -151,19 +151,9 @@
             flex-shrink: 0;
         }
 
-        #filtros::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        #filtros::-webkit-scrollbar-track {
-            background: #F2EBE1;
-            border-radius: 10px;
-        }
-
-        #filtros::-webkit-scrollbar-thumb {
-            background: #D1C5B4;
-            border-radius: 10px;
-        }
+        #filtros::-webkit-scrollbar { height: 6px; }
+        #filtros::-webkit-scrollbar-track { background: #F2EBE1; border-radius: 10px; }
+        #filtros::-webkit-scrollbar-thumb { background: #D1C5B4; border-radius: 10px; }
 
         .filtro {
             background: #FFFFFF;
@@ -214,9 +204,7 @@
             transition: transform 0.2s;
         }
 
-        .card-servico:active {
-            transform: scale(0.95);
-        }
+        .card-servico:active { transform: scale(0.95); }
 
         .card-servico h3 {
             font-size: 14px;
@@ -240,12 +228,18 @@
             position: sticky;
             bottom: 0;
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
             align-items: center;
             background: #FFFFFF;
             border-top: 1px solid #E6DFD7;
             padding: 12px 0px 20px 0px;
             margin-top: auto;
+        }
+
+        #nav-links {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
         }
 
         .nav-item {
@@ -264,8 +258,8 @@
         }
 
         .nav-item .icone {
-            width: 50px;
-            height: 50px;
+            width: 24px;
+            height: 24px;
         }
 
         .nav-item span {
@@ -277,6 +271,15 @@
             color: inherit;
         }
 
+        /* --- AUTORA --- */
+        #autora {
+            font-size: 10px;
+            color: #8C7D70;
+            text-align: center;
+            margin-top: 8px;
+            letter-spacing: 0.3px;
+        }
+
     </style>
 </head>
 
@@ -285,7 +288,6 @@
 
         <!-- Card da Instituição -->
         <div id="card-instituicao">
-            <!-- imagem informativa: descreve o conteúdo -->
             <img src="capelo.png" alt="Ícone de capelo representando a instituição UniCEUB">
             <div>
                 <h2>UniCEUB <span class="tag-seguindo">✓ SEGUINDO</span></h2>
@@ -296,7 +298,6 @@
 
         <!-- Barra de Busca -->
         <div id="barra-busca">
-            <!-- decorativa: o label já descreve o campo, ícone não precisa de alt -->
             <img src="lupa.png" alt="" class="icone">
             <label for="campo-busca" class="sr-only">Buscar serviços</label>
             <input type="search" id="campo-busca" placeholder="BUSCAR SERVIÇOS...">
@@ -304,7 +305,6 @@
 
         <!-- Banner -->
         <div id="banner">
-            <!-- decorativas: a ação já está descrita no aria-label do botão -->
             <button class="btn-seta" aria-label="Aviso anterior">
                 <img src="seta-esq.png" alt="" class="icone">
             </button>
@@ -329,14 +329,12 @@
         <!-- Cards de Serviço -->
         <div id="servicos">
             <button class="card-servico">
-                <!-- informativa: descreve o serviço representado -->
                 <img src="patinha.png" alt="Ícone de patinha representando a Clínica Veterinária" class="icone">
                 <h3>Clínica Veterinária</h3>
                 <p>★★★★⯨ 4.8</p>
                 <p>VAGAS: 8</p>
             </button>
             <button class="card-servico">
-                <!-- informativa: descreve o serviço representado -->
                 <img src="hospital.png" alt="Ícone de hospital representando Saúde e Bem-Estar" class="icone">
                 <h3>Saúde & Bem-Estar</h3>
                 <p>★★★★★ 5.0</p>
@@ -346,23 +344,25 @@
 
         <!-- Barra de Navegação -->
         <footer id="barra-nav">
-            <!-- decorativas: o texto do link já descreve o destino -->
-            <a href="#" class="nav-item ativo">
-                <img src="casa.png" alt="" class="icone">
-                <span>INÍCIO</span>
-            </a>
-            <a href="#" class="nav-item">
-                <img src="lupa.png" alt="" class="icone">
-                <span>BUSCA</span>
-            </a>
-            <a href="#" class="nav-item">
-                <img src="agenda.png" alt="" class="icone">
-                <span>AGENDA</span>
-            </a>
-            <a href="#" class="nav-item">
-                <img src="perfil.png" alt="" class="icone">
-                <span>PERFIL</span>
-            </a>
+            <div id="nav-links">
+                <a href="#" class="nav-item ativo">
+                    <img src="casa.png" alt="" class="icone">
+                    <span>INÍCIO</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <img src="lupa.png" alt="" class="icone">
+                    <span>BUSCA</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <img src="agenda.png" alt="" class="icone">
+                    <span>AGENDA</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <img src="perfil.png" alt="" class="icone">
+                    <span>PERFIL</span>
+                </a>
+            </div>
+            <p id="autora">Maria Luiza Magarão - RA: 22408637</p>
         </footer>
 
     </div>
