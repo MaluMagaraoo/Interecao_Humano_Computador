@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <style>
+
+        body {
+            background-color: #D1C5B4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #celular {
+            width: 390px;
+            max-height: 100vh;
+            background-color: #F9F6F0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TEXTOS --- */
+        h2 {
+            font-size: 15px;
+            color: #4A3F35;
+            font-family: system-ui, sans-serif;
+        }
+
+        p {
+            font-size: 11px;
+            color: #8C7D70;
+            font-family: system-ui, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        button {
+            background: none;
+            border: 1px solid #E6DFD7;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            color: #4A3F35;
+        }
+
+        /* --- IMAGENS --- */
+        .icone {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        /* --- ACESSIBILIDADE --- */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        /* --- CARD INSTITUIÇÃO --- */
+        #card-instituicao {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFFFFF;
+            border: 1px solid #E6DFD7;
+            border-radius: 16px;
+            padding: 18px;
+            margin: 20px;
+            flex-shrink: 0;
+        }
+
+        #card-instituicao img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .tag-seguindo {
+            font-size: 10px;
+            color: #8C7D70;
+            border: 1px solid #8C7D70;
+            padding: 2px 7px;
+            border-radius: 6px;
+            margin-left: 4px;
+        }
+
+        /* --- BARRA DE BUSCA --- */
+        #barra-busca {
+            display: flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid #E6DFD7;
+            border-radius: 25px;
+            padding: 14px 18px;
+            margin: 0px 20px 20px 20px;
+            flex-shrink: 0;
+        }
+
+        #barra-busca input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            color: #4A3F35;
+            background: transparent;
+        }
+
+        /* --- BANNER --- */
+        #banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #BFA588;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin: 0px 20px 20px 20px;
+            flex-shrink: 0;
+        }
+
+        .btn-seta {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        #banner p {
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* --- FILTROS --- */
+        #filtros {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 0px 20px 12px 20px;
+            margin: 0px 20px 10px 20px;
+            flex-shrink: 0;
+        }
+
+        #filtros::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        #filtros::-webkit-scrollbar-track {
+            background: #F2EBE1;
+            border-radius: 10px;
+        }
+
+        #filtros::-webkit-scrollbar-thumb {
+            background: #D1C5B4;
+            border-radius: 10px;
+        }
+
+        .filtro {
+            background: #FFFFFF;
+            border: 1px solid #E6DFD7;
+            padding: 10px 18px;
+            border-radius: 25px;
+            white-space: nowrap;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #8C7D70;
+        }
+
+        .filtro.ativo {
+            background: #8B6B4E;
+            color: white;
+            border: none;
+        }
+
+        /* --- TÍTULO SERVIÇOS --- */
+        #titulo-servicos {
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0px 20px 10px 20px;
+            flex-shrink: 0;
+        }
+
+        /* --- GRID DE SERVIÇOS --- */
+        #servicos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 0px 20px 20px 20px;
+            flex-shrink: 0;
+        }
+
+        .card-servico {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid #E6DFD7;
+            border-radius: 16px;
+            padding: 18px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card-servico:active {
+            transform: scale(0.95);
+        }
+
+        .card-servico h3 {
+            font-size: 14px;
+            color: #4A3F35;
+            margin-top: 8px;
+        }
+
+        .card-servico p {
+            font-size: 12px;
+            color: #8C7D70;
+            margin-top: 4px;
+        }
+
+        .card-servico .icone {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* --- BARRA DE NAVEGAÇÃO --- */
+        #barra-nav {
+            position: sticky;
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: #FFFFFF;
+            border-top: 1px solid #E6DFD7;
+            padding: 12px 0px 20px 0px;
+            margin-top: auto;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #8C7D70;
+            font-size: 11px;
+            gap: 4px;
+        }
+
+        .nav-item.ativo {
+            color: #8B6B4E;
+            font-weight: bold;
+        }
+
+        .nav-item .icone {
+            width: 50px;
+            height: 50px;
+        }
+
+        .nav-item span {
+            border: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 0;
+            font-size: 11px;
+            color: inherit;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="celular">
+
+        <!-- Card da Instituição -->
+        <div id="card-instituicao">
+            <!-- imagem informativa: descreve o conteúdo -->
+            <img src="capelo.png" alt="Ícone de capelo representando a instituição UniCEUB">
+            <div>
+                <h2>UniCEUB <span class="tag-seguindo">✓ SEGUINDO</span></h2>
+                <p>CAMPUS ASA NORTE</p>
+            </div>
+            <button>TROCAR ⌵</button>
+        </div>
+
+        <!-- Barra de Busca -->
+        <div id="barra-busca">
+            <!-- decorativa: o label já descreve o campo, ícone não precisa de alt -->
+            <img src="lupa.png" alt="" class="icone">
+            <label for="campo-busca" class="sr-only">Buscar serviços</label>
+            <input type="search" id="campo-busca" placeholder="BUSCAR SERVIÇOS...">
+        </div>
+
+        <!-- Banner -->
+        <div id="banner">
+            <!-- decorativas: a ação já está descrita no aria-label do botão -->
+            <button class="btn-seta" aria-label="Aviso anterior">
+                <img src="seta-esq.png" alt="" class="icone">
+            </button>
+            <p>BANNER DE AVISOS</p>
+            <button class="btn-seta" aria-label="Próximo aviso">
+                <img src="seta-dir.png" alt="" class="icone">
+            </button>
+        </div>
+
+        <!-- Filtros -->
+        <div id="filtros">
+            <button class="filtro ativo">TODOS</button>
+            <button class="filtro">SAÚDE</button>
+            <button class="filtro">NUTRIÇÃO</button>
+            <button class="filtro">EDUCAÇÃO</button>
+            <button class="filtro">ESPORTES</button>
+        </div>
+
+        <!-- Título -->
+        <h2 id="titulo-servicos">Serviços Disponíveis</h2>
+
+        <!-- Cards de Serviço -->
+        <div id="servicos">
+            <button class="card-servico">
+                <!-- informativa: descreve o serviço representado -->
+                <img src="patinha.png" alt="Ícone de patinha representando a Clínica Veterinária" class="icone">
+                <h3>Clínica Veterinária</h3>
+                <p>★★★★⯨ 4.8</p>
+                <p>VAGAS: 8</p>
+            </button>
+            <button class="card-servico">
+                <!-- informativa: descreve o serviço representado -->
+                <img src="hospital.png" alt="Ícone de hospital representando Saúde e Bem-Estar" class="icone">
+                <h3>Saúde & Bem-Estar</h3>
+                <p>★★★★★ 5.0</p>
+                <p>VAGAS: 10</p>
+            </button>
+        </div>
+
+        <!-- Barra de Navegação -->
+        <footer id="barra-nav">
+            <!-- decorativas: o texto do link já descreve o destino -->
+            <a href="#" class="nav-item ativo">
+                <img src="casa.png" alt="" class="icone">
+                <span>INÍCIO</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="lupa.png" alt="" class="icone">
+                <span>BUSCA</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="agenda.png" alt="" class="icone">
+                <span>AGENDA</span>
+            </a>
+            <a href="#" class="nav-item">
+                <img src="perfil.png" alt="" class="icone">
+                <span>PERFIL</span>
+            </a>
+        </footer>
+
+    </div>
+</body>
+
+</html>
