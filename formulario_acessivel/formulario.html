@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub de Serviços da Faculdade — Formulários</title>
+  <style>
+    /* ── Reset e base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f0;
+      color: #1a1a1a;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── Página ── */
+    h1 {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #1a4731;
+      margin-bottom: 0.25rem;
+    }
+    .subtitulo-pagina {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #4a6358;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Seções ── */
+    .secao {
+      background: #ffffff;
+      border: 1px solid #c8dcd2;
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      max-width: 580px;
+      width: 100%;
+      margin: 0 auto 2rem;
+    }
+
+    .secao h2 {
+      font-size: 1.15rem;
+      color: #1a4731;
+      margin-bottom: 0.25rem;
+    }
+    .secao .descricao {
+      font-size: 0.85rem;
+      color: #4a6358;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #e0ede6;
+      padding-bottom: 0.75rem;
+    }
+
+    /* ── Campos ── */
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 0.3rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+      display: block;
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.95rem;
+      font-family: Arial, sans-serif;
+      color: #1a1a1a;
+      background-color: #ffffff;
+      border: 1.5px solid #9abfad;
+      border-radius: 5px;
+      margin-bottom: 1.1rem;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: 3px solid #2e8b57;
+      outline-offset: 1px;
+      border-color: #2e8b57;
+    }
+
+    /* ── Fieldset ── */
+    fieldset {
+      border: 1.5px solid #9abfad;
+      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.1rem;
+    }
+    legend {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #1a1a1a;
+      padding: 0 0.4rem;
+    }
+
+    /* ── Checkbox ── */
+    .campo-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .campo-checkbox input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: #2e8b57;
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+    .campo-checkbox label {
+      font-weight: normal;
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    /* ── Botão ── */
+    button[type="submit"] {
+      background-color: #2e8b57;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 0.65rem 1.75rem;
+      font-size: 0.95rem;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    button[type="submit"]:hover {
+      background-color: #1a5c38;
+    }
+    button[type="submit"]:focus {
+      outline: 3px solid #1a4731;
+      outline-offset: 2px;
+    }
+
+    /* ── Mensagem de sucesso ── */
+    .msg-sucesso {
+      display: none;
+      background-color: #d4edda;
+      border: 1px solid #a3cfbb;
+      color: #1a4731;
+      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    /* ── Anotações didáticas ── */
+    .anotacao {
+      background-color: #eaf4ef;
+      border-left: 4px solid #2e8b57;
+      border-radius: 0 5px 5px 0;
+      padding: 0.6rem 1rem;
+      font-size: 0.82rem;
+      color: #1a4731;
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+    .anotacao strong { font-weight: bold; }
+
+    /* ── Tag de identificação do formulário ── */
+    .tag-form {
+      display: inline-block;
+      background-color: #2e8b57;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-bottom: 0.6rem;
+    }
+    .tag-form.complementar { background-color: #4a6358; }
+
+    /* ── Estilo do Rodapé (Footer) ── */
+    footer {
+      margin-top: auto;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid #c8dcd2;
+      color: #4a6358;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    footer strong {
+      color: #1a4731;
+    }
+
+    /* ── Responsivo ── */
+    @media (max-width: 480px) {
+      .secao { padding: 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>UNIHUB - Portal de Serviços da Faculdade</h1>
+  <p class="subtitulo-pagina">IHC — Atividade Prática: Formulários Acessíveis</p>
+
+
+  <section class="secao">
+    <span class="tag-form">Formulário principal</span>
+    <h2>Cadastro para acesso ao UniHub</h2>
+    <p class="descricao">
+      Preencha seus dados para receber novidades sobre serviços e projetos da faculdade.
+    </p>
+
+    <form id="form-cadastro" action="/cadastro" method="POST">
+
+      <fieldset>
+        <legend>Seus dados</legend>
+
+        <label for="nome-completo">Nome completo <span aria-label="campo obrigatório">*</span></label>
+        <input
+          type="text"
+          id="nome-completo"
+          name="nome_completo"
+          autocomplete="name"
+          required
+          aria-required="true"
+          placeholder="Digite seu nome"
+        />
+
+        <label for="email-cadastro">E-mail <span aria-label="campo obrigatório">*</span></label>
+        <input
+          type="email"
+          id="email-cadastro"
+          name="email"
+          autocomplete="email"
+          required
+          aria-required="true"
+          placeholder="exemplo@dominio.com"
+        />
+      </fieldset>
+
+      <fieldset>
+        <legend>Consentimento</legend>
+        <div class="campo-checkbox">
+          <input
+            type="checkbox"
+            id="aceito-termos"
+            name="aceito_termos"
+            required
+            aria-required="true"
+          />
+          <label for="aceito-termos">
+            Concordo em receber atualizações por e-mail sobre os serviços
+            e projetos da faculdade.
+          </label>
+        </div>
+      </fieldset>
+
+      <button type="submit">Cadastrar</button>
+
+      <div class="msg-sucesso" id="msg-ok-cadastro" role="alert" aria-live="polite">
+        ✓ Cadastro realizado! Você receberá atualizações no e-mail informado.
+      </div>
+
+    </form>
+  </section>
+
+
+  <section class="secao">
+    <span class="tag-form complementar">Complementar 1</span>
+    <h2>Login</h2>
+    <p class="descricao">
+      Acesse sua conta para agendar serviços e acompanhar seus atendimentos.
+    </p>
+
+
+    <form id="form-login" action="/login" method="POST">
+
+      <label for="usuario">Usuário (e-mail) <span aria-label="campo obrigatório">*</span></label>
+      <input
+        type="text"
+        id="usuario"
+        name="usuario"
+        autocomplete="username"
+        required
+        aria-required="true"
+        placeholder="seu@email.com"
+      />
+
+      <label for="senha">Senha <span aria-label="campo obrigatório">*</span></label>
+      <input
+        type="password"
+        id="senha"
+        name="senha"
+        autocomplete="current-password"
+        required
+        aria-required="true"
+        placeholder="Sua senha"
+      />
+
+      <button type="submit">Entrar</button>
+
+      <div class="msg-sucesso" id="msg-ok-login" role="alert" aria-live="polite">
+        ✓ Login realizado com sucesso!
+      </div>
+
+    </form>
+  </section>
+
+
+  <section class="secao">
+    <span class="tag-form complementar">Complementar 2</span>
+    <h2>Pesquisa de serviços</h2>
+    <p class="descricao">
+      Encontre serviços, projetos e atendimentos disponíveis na faculdade.
+    </p>
+  
+    <form id="form-pesquisa" action="/buscar" method="GET" role="search">
+  
+      <label for="pesquisa">O que você procura?</label>
+      <input
+        type="text"
+        id="pesquisa"
+        name="pesquisa"
+        placeholder="Ex.: veterinário, saúde, crianças..."
+        aria-label="Campo de pesquisa de serviços"
+      />
+  
+      <label for="categoria">Categoria do Serviço</label>
+      <select id="categoria" name="categoria">
+        <option value="todos">Todas as categorias</option>
+        <option value="saude">Saúde & Bem-estar</option>
+        <option value="juridico">Assistência Jurídica</option>
+        <option value="tecnologia">Suporte Tecnológico</option>
+        <option value="educacao">Cursos e Oficinas</option>
+      </select>
+  
+      <label for="unidade">Unidade / Campus</label>
+      <select id="unidade" name="unidade">
+        <option value="central">Campus Central</option>
+        <option value="norte">Unidade Norte</option>
+        <option value="sul">Unidade Sul</option>
+      </select>
+  
+      <div class="campo-checkbox">
+        <input type="checkbox" id="vagas-abertas" name="vagas_abertas" />
+        <label for="vagas-abertas">Mostrar apenas serviços com inscrições abertas</label>
+      </div>
+  
+      <button type="submit" style="margin-top: 1.5rem;">Filtrar Resultados</button>
+  
+    </form>
+  </section>
+
+
+  <section class="secao">
+    <span class="tag-form complementar">Complementar 3</span>
+    <h2>Feedback de serviço</h2>
+    <p class="descricao">
+      Sua opinião ajuda a faculdade a melhorar os atendimentos oferecidos à comunidade.
+    </p>
+
+    <form id="form-feedback" action="/feedback" method="POST">
+
+      <label for="nome-feedback">Nome</label>
+      <input
+        type="text"
+        id="nome-feedback"
+        name="nome"
+        autocomplete="name"
+        placeholder="Seu nome (opcional)"
+      />
+
+      <label for="comentario">
+        Comentário <span aria-label="campo obrigatório">*</span>
+      </label>
+      <textarea
+        id="comentario"
+        name="comentario"
+        rows="4"
+        required
+        aria-required="true"
+        placeholder="Descreva sua experiência com o serviço..."
+      ></textarea>
+
+      <label for="avaliacao">Avaliação <span aria-label="campo obrigatório">*</span></label>
+      <select
+        id="avaliacao"
+        name="avaliacao"
+        required
+        aria-required="true"
+      >
+        <option value="">Selecione uma nota...</option>
+        <optgroup label="Experiência positiva">
+          <option value="excelente">Excelente</option>
+          <option value="bom">Bom</option>
+        </optgroup>
+        <optgroup label="Experiência negativa">
+          <option value="regular">Regular</option>
+          <option value="ruim">Ruim</option>
+        </optgroup>
+      </select>
+
+      <button type="submit">Enviar Feedback</button>
+
+      <div class="msg-sucesso" id="msg-ok-feedback" role="alert" aria-live="polite">
+        ✓ Feedback enviado! Obrigado pela sua avaliação.
+      </div>
+
+    </form>
+  </section>
+
+  <footer>
+    <p><strong>Desenvolvido por:</strong> Maria Luiza Magarão</p>
+    <p><strong>Matrícula:</strong> 22408637</p>
+    <p>
+      <strong>GitHub:</strong> 
+      <a href="https://github.com/MaluMagaraoo" target="_blank" rel="noopener noreferrer" aria-label="Acessar perfil Github">
+        https://github.com/MaluMagaraoo
+      </a>
+    </p>
+    <p>
+      <em>Assistente de IA utilizado (Claude): análise de código e verificação de 
+      diretrizes de acessibilidade aplicadas.</em>
+    </p>
+  </footer>    
+
+  <script>
+    function simularEnvio(formId, msgId) {
+      const form = document.getElementById(formId);
+      const msg  = document.getElementById(msgId);
+      if (!form) return;
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        msg.style.display = 'block';
+        form.reset();
+
+        setTimeout(function() {
+          msg.style.display = 'none';
+        }, 5000);
+      });
+    }
+
+    simularEnvio('form-cadastro', 'msg-ok-cadastro');
+    simularEnvio('form-login',    'msg-ok-login');
+    simularEnvio('form-feedback', 'msg-ok-feedback');
+  </script>
+
+</body>
+</html>
